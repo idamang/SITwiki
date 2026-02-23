@@ -1,14 +1,32 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArticleCard, SearchBar, TitleSection } from "../components";
-import { articles } from "../data/articles";
+import { supabase } from "../lib/supabase";
 
 export default function Home() {
   const [query, setQuery] = useState("");
+  const [articles, setArticles] = useState([]);
   const navigate = useNavigate();
 
-  const threeFirstArticles = articles.slice(0, 3);
+  useEffect(() => {
+    async function loadArticles() {
+      const { data, error } = await supabase
+        .from("articles")
+        .select("*")
+        .order("updated_at", { ascending: false });
 
+      if (error) {
+        console.error("DB error:", error);
+      } else {
+        setArticles(data);
+      }
+    }
+
+    loadArticles();
+  }, []);
+
+  const threeFirstArticles = articles.slice(0, 3);
+console.log("ARTICLES STATE:", articles);
   return (
     <div className="page">
       <h1>SITWiki</h1>
@@ -22,7 +40,7 @@ export default function Home() {
         <ArticleCard
           key={article.id}
           title={article.title}
-          updated={article.lastEdited}
+          updated={article.updated_at}
           onClick={() => navigate(`/article/${article.id}`)}
         />
       ))}

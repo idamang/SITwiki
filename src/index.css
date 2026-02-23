@@ -164,3 +164,53 @@ button:hover {
 .edit-btn {
   margin-bottom: 1.5rem;
 }
+.editor {
+  width: 100%;
+  min-height: 300px;
+  padding: 1rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.create-container {
+  max-width: 700px;
+  margin: 40px auto;
+  background: var(--panel);
+  padding: 30px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+}
+
+.create-title {
+  margin-bottom: 20px;
+}
+
+.create-field {
+  margin-bottom: 20px;
+}
+
+.create-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.create-input,
+.create-textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1rem;
+}
+
+.create-textarea {
+  min-height: 200px;
+  resize: vertical;
+}
+
+.create-btn {
+  margin-top: 10px;
+}
